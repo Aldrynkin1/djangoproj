@@ -6,7 +6,7 @@ app_name = 'main'
 
 urlpatterns = [
     path('index', views.IndexView.as_view(), name='index'),
-    path('catalog/' , views.IndexView.as_view() , name='catalog_all'),
+    path('catalog/' , views.IndexView.as_view() , name='product_list'),
     path('catalog/<slug:category_slug>/', views.CatalogView.as_view() , name='catalog'),
     path('product/<slug:slug>' , views.ProductDetailView.as_view() , name='product_detail')
     

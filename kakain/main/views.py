@@ -29,7 +29,7 @@ class CatalogView(TemplateView):
         'color': lambda queryset , value: queryset/filter(color_iexact=value),
         'min_price': lambda queryset , value: queryset/filter(price_gte=value),
         'max_price': lambda queryset , value: queryset/filter(price_lte=value),
-        'size': lambda queryset , value: queryset/filter(product_size__size__name=value),
+        'size': lambda queryset , value: queryset/filter(product_sizes__size__name=value),
     }
     
     def get_context_data(self, **kwargs):
@@ -107,7 +107,7 @@ class ProductDetailView(DetailView):
         context['related_products'] = Product.objects.filter(
             category = product.category
         ).exclude(id=product.id)[:4]
-        context(['current_category']) = product.category.slug
+        context['current_category'] = product.category.slug
         
         def get(self , request , *args , **kwargs):
             self.object = self.get_object()
@@ -118,10 +118,3 @@ class ProductDetailView(DetailView):
 
         
         return 
-    
-        
-    
-    
-
-# def index(request):
-#     return render(request, 'main/index.html')
